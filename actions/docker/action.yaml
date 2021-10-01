@@ -17,10 +17,14 @@ runs:
     - id: docker
       uses: 'docker://alpine:latest'
       with:
-        pre-entrypoint: "entrypoint.sh"
-        entrypoint: ["sh"]
-        args: []
+    #     pre-entrypoint: "entrypoint.sh"
+        entrypoint: "sh"
+        args: |
+          -lc -- echo "::set-output name=output::${{ toJSON(inputs) }}"
 
+    # - run: |
+    #     docker containter run
+    #   shell: bash
     - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
       shell: bash
 
