@@ -20,7 +20,7 @@ runs:
     #     pre-entrypoint: "entrypoint.sh"
         entrypoint: "sh"
         args: |
-          -lc -- echo "::set-output name=output::${{ toJSON(inputs) }}"
+          -lc -- echo "::set-output name=output::'${{ toJSON(inputs) }}'"
 
     # - run: |
     #     docker containter run
