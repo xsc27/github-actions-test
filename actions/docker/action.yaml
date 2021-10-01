@@ -9,6 +9,8 @@ inputs:
 outputs:
   time: # id of output
     description: 'The time we greeted you'
+    value: ${{ steps.docker.outputs.output }}
+
 runs:
   using: composite
   steps:
@@ -19,4 +21,5 @@ runs:
         args:
           - ${{ toJSON(inputs) }}
     - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
-  
+      shell: bash
+
