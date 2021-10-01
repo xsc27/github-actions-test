@@ -17,9 +17,9 @@ runs:
     - id: docker
       uses: 'docker://alpine:latest'
       with:
-    #     pre-entrypoint: "entrypoint.sh"
         entrypoint: "sh"
-        args: -lc --
+        args: >
+          -lc --
           'echo "::set-output name=output::${{ inputs.who-to-greet }}X"'
       name: "1"
     - run: echo "::set-output name=output::$(
