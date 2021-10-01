@@ -18,7 +18,7 @@ runs:
       uses: 'docker://alpine:3.8'
       working-directory: '..'
       with:
-        entrypoint: 'ep.sh'
+        entrypoint: 'entrypoint.sh'
         args: |
           ${{ toJSON(inputs) }}
     - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
