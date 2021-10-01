@@ -17,11 +17,7 @@ runs:
     - id: docker
       uses: 'docker://alpine:3.8'
       with:
-        entrypoint: "sh -l -c -- "
-        args: |
-          OUTPUT="$(echo "${{ toJSON(inputs) }}" | jq '.[]')"
-          printf -- "Command output:\n${OUTPUT}"
-          echo "::set-output name=output::${OUTPUT}
+        pre-entrypoint: "entrypoint.sh"
 
     - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
       shell: bash
