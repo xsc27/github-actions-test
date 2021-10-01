@@ -19,6 +19,7 @@ runs:
       with:
         pre-entrypoint: "entrypoint.sh"
         entrypoint: "sh"
+        args: []
 
     - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
       shell: bash
