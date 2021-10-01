@@ -10,7 +10,13 @@ outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
-  using: 'docker'
-  image: '../Dockerfile'
-  args:
-    - ${{ toJSON(inputs) }}
+  using: composite
+  steps:
+    - id: docker
+      uses: 'docker://alpine:3.8'
+      with:
+        entrypoint: '../ep.sh'
+        args:
+          - ${{ toJSON(inputs) }}
+    - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
+  
