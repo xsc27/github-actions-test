@@ -35,6 +35,6 @@ runs:
     #   shell: bash
     - run: echo "::notice title=Output::${{ steps.dock.outputs.output }}"
       shell: bash
-    - run: echo "::notice title=Output2::${{ steps.d.outputs.output }}"
-      shell: bash
+    # - run: echo "::notice title=Output2::${{ steps.d.outputs.output }}"
+    #   shell: bash
 
