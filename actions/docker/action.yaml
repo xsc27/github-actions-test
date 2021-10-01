@@ -20,13 +20,15 @@ runs:
     #     pre-entrypoint: "entrypoint.sh"
         entrypoint: "sh"
         args: -lc --
-          'echo ::set-output name=output::${{ inputs.who-to-greet }}'
+          'echo ::set-output name=output::${{ inputs.who-to-greet }}X'
+      name: "1"
     - run: echo "::set-output name=output::$(
         docker run --entrypoint sh alpine -lc --
-          echo '${{ inputs.who-to-greet }}'
+          'echo ${{ inputs.who-to-greet }}'
         )"
       shell: bash
       id: d
+      name: "2"
 
     # - run: |
     #     docker containter run
