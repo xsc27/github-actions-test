@@ -18,23 +18,22 @@ runs:
       uses: 'docker://alpine:latest'
       with:
         entrypoint: "sh"
-        args: >
-          -lc --
+        args: -lc --
           "echo '::set-output name=output::${{ inputs.who-to-greet }}X'"
       name: "1"
-    - run: echo "::set-output name=output::$(
-        docker run --entrypoint sh alpine -lc --
-          'echo ${{ inputs.who-to-greet }}'
-        )"
-      shell: bash
-      id: d
-      name: "2"
+    # - run: echo "::set-output name=output::$(
+    #     docker run --entrypoint sh alpine -lc --
+    #       'echo ${{ inputs.who-to-greet }}'
+    #     )"
+      # shell: bash
+      # id: d
+      # name: "2"
 
     # - run: |
     #     docker containter run
     #   shell: bash
     - run: echo "::notice title=Output::${{ steps.dock.outputs.output }}"
       shell: bash
-    # - run: echo "::notice title=Output2::${{ steps.d.outputs.output }}"
-    #   shell: bash
+    - run: echo "::notice title=Output2::${{ steps.d.outputs.output }}"
+      shell: bash
 
