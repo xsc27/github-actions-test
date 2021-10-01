@@ -16,7 +16,6 @@ runs:
   steps:
     - id: docker
       uses: 'docker://alpine:3.8'
-      working-directory: '..'
       with:
         entrypoint: 'entrypoint.sh'
         args: |
