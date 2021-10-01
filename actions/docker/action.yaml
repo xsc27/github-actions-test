@@ -21,10 +21,16 @@ runs:
         entrypoint: "sh"
         args: |
           -lc -- echo "::set-output name=output::'${{ toJSON(inputs) }}'"
+    - run: docker run --entrypoint sh alpine -lc --
+        echo "::set-output name=output::'${{ toJSON(inputs) }}'"
+      shell: bash
+      id: d
 
     # - run: |
     #     docker containter run
     #   shell: bash
     - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
+      shell: bash
+    - run: echo "::notice title=Output2::${{ steps.d.outputs.output }}"
       shell: bash
 
