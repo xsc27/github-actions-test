@@ -15,7 +15,7 @@ runs:
   using: composite
   steps:
     - id: docker
-      uses: 'docker://alpine:3.8'
+      uses: '../Dockerfile'
       with:
         pre-entrypoint: "entrypoint.sh"
         entrypoint: "sh"
