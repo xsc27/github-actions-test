@@ -19,7 +19,7 @@ runs:
       with:
         entrypoint: "sh"
         args: -lc --
-          "echo '::set-output name=output::${{ inputs.who-to-greet }}X'"
+          "echo '::set-output name=output::${{ inputs.who-to-greet }}'"
       name: "1"
     # - run: echo "::set-output name=output::$(
     #     docker run --entrypoint sh alpine -lc --
@@ -34,6 +34,6 @@ runs:
     #   shell: bash
     - run: echo "::notice title=Output::${{ steps.dock.outputs.output }}"
       shell: bash
-    - run: echo "::notice title=Output2::${{ steps.d.outputs.output }}"
+    - run: echo "::notice title=another::${{ steps.dock.outputs.output }}"
       shell: bash
 
