@@ -15,10 +15,10 @@ runs:
   using: composite
   steps:
     - id: docker
-      uses: '../Dockerfile'
+      uses: 'alpine:latest'
       with:
         pre-entrypoint: "entrypoint.sh"
-        entrypoint: "sh"
+        entrypoint: ["sh"]
         args: []
 
     - run: echo "::notice title=Output::${{ steps.docker.outputs.output }}"
