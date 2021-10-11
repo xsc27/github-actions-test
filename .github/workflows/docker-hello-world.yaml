@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
+      who-to-greet:
         # Friendly description to be shown in the UI instead of 'name'
         # description: 'Person to greet'
         # Default value if no value is explicitly provided
@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      - name: Echo inputs
+        run: echo '${{ toJSON(inputs) }}'
       - uses: actions/checkout@v2
       - name: Hello world action step
         id: hello
