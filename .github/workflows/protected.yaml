@@ -18,7 +18,14 @@ jobs:
           printf -- "$TIME_STAMP\n" >> "$OUTPUT_FILE"
           git add "$OUTPUT_FILE"
           git commit -m "chore: write at $TIME_STAMP" "$OUTPUT_FILE"
-          git push
+          # git push
         shell: bash
         env:
           OUTPUT_FILE: write-protected.txt
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          skip-version-file: true
+          git-branch: protected
+          github-token: ${{ ! secrets.DEPLOY_KEY && github.token || null }}
