@@ -1,0 +1,24 @@
+name: Protected Branches
+
+on: [push, workflow_dispatch]
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: protected
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+      - run: |
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'github-actions[bot]'
+      - run: |
+          TIME_STAMP="$(printf -- "%(%F %T)T\n")"
+          printf -- "$TIME_STAMP\n" >> "$OUTPUT_FILE"
+          git add "$OUTPUT_FILE"
+          git commit -m "chore: write at $TIME_STAMP" "$OUTPUT_FILE"
+          git push
+        shell: bash
+        env:
+          OUTPUT_FILE: write-protected.txt
